@@ -1,21 +1,19 @@
 class Solution {
 public:
-    std::vector<int> intersection(std::vector<int>& nums1, std::vector<int>& nums2) {
+    vector<int> intersection(vector<int>& nums1, vector<int>& nums2) {
+        vector<int>ans;
+        unordered_map<int,int>hm;
 
-        bool seen[1001] = {false};
-        std::vector<int> result;
 
-        for (int num : nums1) {
-            seen[num] = true;
+        for(int x: nums1){
+            hm[x]=1;
         }
-
-        for (int num : nums2) {
-            if (seen[num] == true) {
-                result.push_back(num);
-                seen[num] = false; 
-            }
+        for(int x: nums2){
+        if(hm[x]!=0 && hm.count(x)==1){
+            hm[x]=0;
+            ans.push_back(x);
         }
-        
-        return result;
+         } 
+         return ans;
     }
 };
